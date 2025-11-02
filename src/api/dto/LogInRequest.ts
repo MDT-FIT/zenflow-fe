@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export type LogInRequest = {
-    email?: string | null;
-    password?: string | null;
-};
-
+  email?: string | null
+  password?: string | null
+}

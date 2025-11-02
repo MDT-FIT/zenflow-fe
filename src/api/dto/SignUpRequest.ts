@@ -3,8 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type SignUpRequest = {
-    username?: string | null;
-    email?: string | null;
-    password?: string | null;
-};
-
+  username?: string | null
+  email?: string | null
+  password?: string | null
+}

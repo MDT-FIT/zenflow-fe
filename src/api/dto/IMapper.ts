@@ -2,8 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { TypeAdapterConfig } from './TypeAdapterConfig';
+import type { TypeAdapterConfig } from './TypeAdapterConfig'
 export type IMapper = {
-    config?: TypeAdapterConfig;
-};
-
+  config?: TypeAdapterConfig
+}
