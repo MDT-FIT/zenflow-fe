@@ -8,7 +8,7 @@ import { LogInFormValues, schema } from '@/features/auth/models/LogInFormValues'
 export interface LogInFormProps {
   id: string
   defaultValues?: LogInFormValues
-  onSubmit?: (data: LogInFormValues) => void
+  onSubmit: (data: LogInFormValues) => void
 }
 export const LogInForm = ({ id, defaultValues, onSubmit }: LogInFormProps) => {
   const form = useForm<LogInFormValues>({
@@ -19,10 +19,10 @@ export const LogInForm = ({ id, defaultValues, onSubmit }: LogInFormProps) => {
 
   const { control, handleSubmit } = form
 
-  const handler = handleSubmit((data: LogInFormValues) => onSubmit?.(data))
+
 
   return (
-    <form id={id} onSubmit={handler} className="w-full">
+    <form id={id} onSubmit={handleSubmit((data) => onSubmit(data))} className="w-full">
       <div className="w-full space-y-2">
         <Controller
           control={control}
@@ -43,8 +43,8 @@ export const LogInForm = ({ id, defaultValues, onSubmit }: LogInFormProps) => {
         <Controller
           control={control}
           name="password"
-          render={({ field , fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
               <Input
                 {...field}
                 aria-invalid={fieldState.invalid}
@@ -54,7 +54,6 @@ export const LogInForm = ({ id, defaultValues, onSubmit }: LogInFormProps) => {
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
-            
           )}
         />
       </div>

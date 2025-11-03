@@ -27,7 +27,7 @@ export const SignInForm = ({ id, defaultValues, onSubmit }: SignInFormProps) => 
           control={control}
           name="username"
           render={({ field, fieldState }) => (
-             <Field data-invalid={fieldState.invalid}>
+            <Field data-invalid={fieldState.invalid}>
               <Input
                 {...field}
                 aria-invalid={fieldState.invalid}
@@ -58,8 +58,8 @@ export const SignInForm = ({ id, defaultValues, onSubmit }: SignInFormProps) => 
         <Controller
           control={control}
           name="password"
-          render={({ field , fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
               <Input
                 {...field}
                 aria-invalid={fieldState.invalid}
@@ -69,7 +69,6 @@ export const SignInForm = ({ id, defaultValues, onSubmit }: SignInFormProps) => 
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
-            
           )}
         />
       </div>
