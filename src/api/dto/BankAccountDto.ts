@@ -2,16 +2,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BankConfigDto } from './BankConfig'
-import type { IMapper } from './IMapper'
-import type { UserDto } from './User'
+import type { BankConfigDto } from './BankConfigDto'
+import type { UserDto } from './UserDto'
 export type BankAccountDto = {
   id?: string | null
-  mapper?: IMapper
   updatedAt?: string
   createdAt?: string
-  userId?: string | null
-  bankId?: string | null
+  userId?: string
+  bankId?: string
   currencyScale?: number
   balance?: number
   user?: UserDto

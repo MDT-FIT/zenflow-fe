@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type TransactionFilterDto = {
+export type TransactionFilterRequest = {
   accountIds: string[]
   userId: string | null
   dateFrom?: string

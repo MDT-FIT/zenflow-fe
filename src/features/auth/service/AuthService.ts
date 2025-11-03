@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { LogInRequest } from '../../../api/dto/LogInRequest'
-import type { SignUpRequest } from '../../../api/dto/SignUpRequest'
+import type { LogInRequest } from '../../../api/dto/request/LogInRequest'
+import type { SignUpRequest } from '../../../api/dto/request/SignUpRequest'
 import type { CancelablePromise } from '../../../api/core/CancelablePromise'
 import { OpenAPI } from '../../../api/core/OpenAPI'
 import { request as __request } from '../../../api/core/request'

@@ -34,17 +34,24 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
   const refreshMutation = useRefreshMutation({})
 
   useEffect(() => {
-    console.log(user)
-    if (!user) {
-      const token = getCookie('jwt_refresh_token')
+    // console.log(user)
+    // if (!user) {
+    //   const token = getCookie('jwt_refresh_token')
 
-      if (token) {
-        refreshMutation.mutate(token)
-      } else {
-        navigate('/log-in')
-      }
+    //   if (token) {
+    //     refreshMutation.mutate(token)
+    //   } else {
+    //     navigate('/log-in')
+    //   }
+    // }
+
+    const token = getCookie('jwt_refresh_token')
+
+    if (!token) {
+      setUser(null)
     }
-  }, [user])
+
+  }, [])
 
   const value = {
     user,

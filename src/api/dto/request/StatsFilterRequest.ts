@@ -2,7 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { TypeAdapterConfig } from './TypeAdapterConfig'
-export type IMapper = {
-  config?: TypeAdapterConfig
+export type StatsFilterRequest = {
+  accountIds: string[]
+  userId: string
+  dateFrom?: string
+  dateTo?: string
 }

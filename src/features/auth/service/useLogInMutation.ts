@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { AuthService } from './AuthService'
 import type { LogInFormValues } from '../models/LogInFormValues'
-import type { LogInResponse } from '@/api/dto/LogInResponse'
+import type { LogInResponse } from '@/api/dto/response/LogInResponse'
 import type { User } from '../models/User'
 
 export const useLogInMutation = ({

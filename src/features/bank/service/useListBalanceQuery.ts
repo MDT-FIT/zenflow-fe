@@ -1,27 +1,27 @@
 import { BankService } from './BankService'
-import { Balance } from '../models/Balance'
 import { useQuery } from '@tanstack/react-query'
+import type { BalanceDto } from '@/api/dto/BalanceDto'
+import { Exception } from '@/features/utils/Exception'
+
+const LIST_BALANCE_QUERY_KEY = 'list-balance';
 
 export const useListBalanceQuery = ({
   accountIds,
   userId,
-  onSuccess,
-  onError,
 }: {
   accountIds: string[]
   userId: string
-  onSuccess?: (data: Balance) => void
-  onError?: (error: unknown) => void
 }) => {
-  return useQuery({
+  return useQuery<BalanceDto[], Exception>({
     enabled: !!accountIds.length && !!userId,
-    queryKey: ['balances', { accountIds, userId }],
+    queryKey: [LIST_BALANCE_QUERY_KEY, { accountIds, userId }],
     queryFn: async () => {
       try {
         const balances = await BankService.getApiBankBalances(accountIds, userId)
-        return balances.map(balance => Balance.create(balance));
+        
+        return balances ?? [];
       } catch (error) {
-        throw new Error(`Failed to fetch balance: ${error}`)
+         throw new Exception({ title: 'Failed to fetch balance', message: `${error}` });
       }
     },
   })

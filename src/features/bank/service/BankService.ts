@@ -2,19 +2,23 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BankConfigDto } from '../../../api/dto/BankConfig'
-import type { StatsFilter } from '../../../api/dto/StatsFilter'
-import type { TransactionFilterDto } from '../../../api/dto/TransactionFilter'
+import type { BankConfigDto } from '../../../api/dto/BankConfigDto'
+import type { StatsFilterRequest } from '../../../api/dto/request/StatsFilterRequest'
+import type { TransactionFilterRequest } from '../../../api/dto/request/TransactionFilterRequest'
 import type { CancelablePromise } from '../../../api/core/CancelablePromise'
 import { OpenAPI } from '../../../api/core/OpenAPI'
 import { request as __request } from '../../../api/core/request'
+import type { BalancesResponse } from '@/api/dto/response/BalancesResponse'
+import type { BankConfigsResponse } from '@/api/dto/response/BankConfigsResponse'
+import type { StatsResponse } from '@/api/dto/response/StatsResponse'
+import type { TransactionsResponse } from '@/api/dto/response/TransactionsResponse'
 export class BankService {
   /**
    * @param userId
    * @returns any OK
    * @throws ApiError
    */
-  public static getApiBankBankConfigs(userId: string): CancelablePromise<any> {
+  public static getApiBankBankConfigs(userId: string): CancelablePromise<BankConfigsResponse> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/api/Bank/bank-configs/{userId}',
@@ -29,8 +33,8 @@ export class BankService {
    * @throws ApiError
    */
   public static postApiBankTransactions(
-    requestBody?: TransactionFilterDto
-  ): CancelablePromise<any> {
+    requestBody?: TransactionFilterRequest
+  ): CancelablePromise<TransactionsResponse> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/api/Bank/transactions',
@@ -43,7 +47,7 @@ export class BankService {
    * @returns any OK
    * @throws ApiError
    */
-  public static postApiBankStatsExpenses(requestBody?: StatsFilter): CancelablePromise<any> {
+  public static postApiBankStatsExpenses(requestBody?: StatsFilterRequest): CancelablePromise<StatsResponse> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/api/Bank/stats/expenses',
@@ -56,7 +60,7 @@ export class BankService {
    * @returns any OK
    * @throws ApiError
    */
-  public static postApiBankStatsIncome(requestBody?: StatsFilter): CancelablePromise<any> {
+  public static postApiBankStatsIncome(requestBody?: StatsFilterRequest): CancelablePromise<StatsResponse> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/api/Bank/stats/income',
@@ -69,7 +73,7 @@ export class BankService {
    * @returns any OK
    * @throws ApiError
    */
-  public static postApiBankStatsTopCard(requestBody?: StatsFilter): CancelablePromise<any> {
+  public static postApiBankStatsTopCard(requestBody?: StatsFilterRequest): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/api/Bank/stats/top-card',
@@ -86,7 +90,7 @@ export class BankService {
   public static getApiBankBalances(
     accountIds?: Array<string>,
     userId?: string
-  ): CancelablePromise<any> {
+  ): CancelablePromise<BalancesResponse> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/api/Bank/balances',

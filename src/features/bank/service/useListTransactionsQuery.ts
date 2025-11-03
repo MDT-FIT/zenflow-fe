@@ -2,34 +2,26 @@ import { BankService } from './BankService'
 import { useQuery } from '@tanstack/react-query'
 import type { TransactionFilter } from '@/api'
 import { Transaction } from '../models/Transaction'
-import { mapTransactionType } from '../models/TransactionType'
+import { Exception } from '@/features/utils/Exception'
+import { TransactionMapper } from '../mappers/TransactionMapper'
+
+const LIST_TRANSACTIONS_QUERY_KEY = 'list-transactions';
 
 export const useListTransactionsQuery = ({
   filter,
-  onSuccess,
-  onError,
 }: {
   filter: TransactionFilter
-  onSuccess?: (data: Transaction[]) => void
-  onError?: (error: unknown) => void
 }) => {
-  return useQuery({
+  return useQuery<Transaction[], Exception>({
     enabled: !!filter.accountIds.length && !!filter.userId,
-    queryKey: ['transactions', { accountIds: filter.accountIds, userId: filter.userId }],
+    queryKey: [LIST_TRANSACTIONS_QUERY_KEY, { accountIds: filter.accountIds, userId: filter.userId }],
     queryFn: async () => {
       try {
         const transactions = await BankService.postApiBankTransactions(filter)
 
-        const mappedTransactions = transactions.map((tx) =>
-          Transaction.create({
-            ...transactions,
-            type: mapTransactionType[tx.type],
-          })
-        )
-
-        return mappedTransactions
+        return transactions.map(TransactionMapper.toDomain);
       } catch (error) {
-        throw new Error(`Failed to fetch transactions: ${error}`)
+        throw new Exception({ title: 'Failed to fetch transactions', message: `${error}` })
       }
     },
   })

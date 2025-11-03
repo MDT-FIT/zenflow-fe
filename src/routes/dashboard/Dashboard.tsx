@@ -1,7 +1,9 @@
 import { useAuth } from '@/features/auth/context/useAuth'
+import { useGetExpensesQuery } from '@/features/bank/service/useGetExpensesQuery'
+import { useGetIncomeQuery } from '@/features/bank/service/useGetIncomeQuery'
 import { useListBalanceQuery } from '@/features/bank/service/useListBalanceQuery'
-import { useListStatsQuery } from '@/features/bank/service/useListStatsQuery'
 import { useListTransactionsQuery } from '@/features/bank/service/useListTransactionsQuery'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const Dashboard = () => {
@@ -12,30 +14,34 @@ export const Dashboard = () => {
     userId: user?.id || '',
   }
 
-  if (!user) {
-    navigate('/login')
-    return null
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate('/log-in')
+    }
 
-    if (!user.accountIds || user.accountIds.length === 0) {
-    navigate('/connect-bank')
-      return null
-  }
+    if (!user?.accountIds || user?.accountIds?.length === 0) {
+      navigate('/connect-bank')
+    }
+  }, [user])
 
   const transactions = useListTransactionsQuery({
     filter
   })
 
-    const stats = useListStatsQuery({
+    const expenses = useGetExpensesQuery({
+    filter
+  })
+
+      const income = useGetIncomeQuery({
     filter
   })
 
     const balance = useListBalanceQuery({
-    accountIds: user.accountIds,
-    userId: user.id,
+    accountIds: user?.accountIds ?? [],
+    userId: user?.id ?? "",
   })
 
-  console.log({ transactions, stats, balance })
+  console.log({ transactions, income, balance })
 
 
   return (

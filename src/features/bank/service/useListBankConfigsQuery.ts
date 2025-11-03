@@ -1,27 +1,27 @@
 import { BankService } from './BankService'
-import { Balance } from '../models/Balance'
 import { useQuery } from '@tanstack/react-query'
 import { BankConfig } from '../models/BankConfig'
+import { BankConfigMapper } from '../mappers/BankConfigMapper'
+import { Exception } from '@/features/utils/Exception'
+
+const LIST_CONFIG_QUERY_KEY = 'list-configs';
 
 export const useListBankConfigsQuery = ({
   userId,
-  onSuccess,
-  onError,
 }: {
   accountIds: string[]
   userId: string
-  onSuccess?: (data: BankConfig[]) => void
-  onError?: (error: unknown) => void
 }) => {
-  return useQuery({
+  return useQuery<BankConfig[], Exception>({
     enabled: !!userId,
-    queryKey: ['configs', { userId }],
+    queryKey: [LIST_CONFIG_QUERY_KEY, { userId }],
     queryFn: async () => {
       try {
         const configs = await BankService.getApiBankBankConfigs(userId)
-        return configs.map(config => BankConfig.create(config));
+
+        return configs.map(BankConfigMapper.toDomain);
       } catch (error) {
-        throw new Error(`Failed to fetch bank configs: ${error}`)
+        throw new Exception({ title: 'Failed to fetch bank configs', message: `${error}` });
       }
     },
   })

@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { UserDto } from '../../../api/dto/User'
+import type { UserDto } from '../../../api/dto/UserDto'
 import type { CancelablePromise } from '../../../api/core/CancelablePromise'
 import { OpenAPI } from '../../../api/core/OpenAPI'
 import { request as __request } from '../../../api/core/request'
