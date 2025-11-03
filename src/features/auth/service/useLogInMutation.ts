@@ -14,7 +14,7 @@ export const useLogInMutation = ({
   return useMutation({
     mutationFn: async (data: LogInFormValues) => {
       try {
-        const response = await AuthService.postApiZenflowAuthLogIn(data);
+        const response = await AuthService.postApiZenflowAuthLogIn(data)
 
         const mappedResponse: LogInResponse = {
           accessToken: response.access_token,
@@ -23,15 +23,15 @@ export const useLogInMutation = ({
             email: response.user.email,
             id: response.user.id,
             username: response.user.username,
+            accountIds: response.user.accountIds
           } as User,
-        };
+        }
 
         if (!mappedResponse.user) {
           throw new Error('No user data returned from the server')
         }
 
-        console.log(mappedResponse.user)
-        return mappedResponse.user;
+        return mappedResponse.user
       } catch (error) {
         throw new Error(`Log in failed: ${error}`)
       }

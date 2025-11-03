@@ -1,11 +1,13 @@
 import { createContext } from 'react'
-import type { User } from '../models/User';
-import type { LogInFormValues } from '../models/LogInFormValues';
+import type { User } from '../models/User'
+import type { LogInFormValues } from '../models/LogInFormValues'
 
 export interface AuthContextReturnType {
-    user: User | null;
-  login: (data: LogInFormValues) => Promise<User>;
-  logout: () => Promise<void>;
+  user: User | null
+  login: (data: LogInFormValues) => Promise<User>
+  logout: () => Promise<void>
+  isLoginIn: boolean
+  isLogingOut: boolean
 }
 
 export const AuthContext = createContext<AuthContextReturnType | null>(null)

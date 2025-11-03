@@ -19,8 +19,6 @@ export const LogInForm = ({ id, defaultValues, onSubmit }: LogInFormProps) => {
 
   const { control, handleSubmit } = form
 
-
-
   return (
     <form id={id} onSubmit={handleSubmit((data) => onSubmit(data))} className="w-full">
       <div className="w-full space-y-2">

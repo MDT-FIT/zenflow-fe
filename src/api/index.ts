@@ -13,7 +13,7 @@ export { BankNameDto as BankName } from './dto/BankName'
 export type { IMapper } from './dto/IMapper'
 export type { LogInRequest } from './dto/LogInRequest'
 export type { SignUpRequest } from './dto/SignUpRequest'
-export type { StatsFilterDto as StatsFilter } from './dto/StatsFilter'
+export type { StatsFilter as StatsFilter } from './dto/StatsFilter'
 export type { TransactionFilterDto as TransactionFilter } from './dto/TransactionFilter'
 export type { UserDto as User } from './dto/User'
 

@@ -3,8 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type TransactionFilterDto = {
-  id: string | null
-  accountIds?: Array<string> | null
+  accountIds: string[]
   userId: string | null
   dateFrom?: string
   dateTo?: string
