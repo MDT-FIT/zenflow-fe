@@ -12,8 +12,9 @@ import { MainLayout } from './routes/components/MainLayout'
 import { Toaster } from 'react-hot-toast';
 import toast from 'react-hot-toast';
 import { Exception } from './features/utils/Exception'
+import { AuthGuard } from './features/auth/context/AuthGuard'
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error) => {
        if (error instanceof Exception) {
@@ -44,14 +45,15 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/log-in" element={<LogIn />} />
-             <Route path="/connect-bank" element={<ConnectBank />} />
-
-            <Route path="/" element={<MainLayout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="/cards" element={<Cards />} />
-              <Route path="/transactions" element={<Transacions />} />
+            <Route element={<AuthGuard />}>
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/log-in" element={<LogIn />} />
+              <Route path="/connect-bank" element={<ConnectBank />} />
+              <Route path="/" element={<MainLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="/cards" element={<Cards />} />
+                <Route path="/transactions" element={<Transacions />} />
+              </Route>
             </Route>
           </Routes>
         </AuthProvider>

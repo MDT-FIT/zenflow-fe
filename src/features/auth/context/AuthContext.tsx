@@ -8,6 +8,8 @@ export interface AuthContextReturnType {
   logout: () => Promise<void>
   isLoginIn: boolean
   isLogingOut: boolean
+  isUserLoading: boolean
+  refresh: () => Promise<void>
 }
 
 export const AuthContext = createContext<AuthContextReturnType | null>(null)

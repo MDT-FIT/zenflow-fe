@@ -7,7 +7,21 @@ import type { SignUpRequest } from '../../../api/dto/request/SignUpRequest'
 import type { CancelablePromise } from '../../../api/core/CancelablePromise'
 import { OpenAPI } from '../../../api/core/OpenAPI'
 import { request as __request } from '../../../api/core/request'
+import type { GetUserResponse } from '@/api/dto/response/GetUserResponse'
+
 export class AuthService {
+    /**
+   * @param requestBody
+   * @returns any OK
+   * @throws ApiError
+   */
+  public static getApiZenflowAuthGetUser(): CancelablePromise<GetUserResponse> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/api/zenflow/Auth/get-user',
+      mediaType: 'application/json',
+    })
+  }
   /**
    * @param requestBody
    * @returns any OK
@@ -39,11 +53,10 @@ export class AuthService {
    * @returns any OK
    * @throws ApiError
    */
-  public static postApiZenflowAuthRefresh(requestBody?: string): CancelablePromise<any> {
+  public static postApiZenflowAuthRefresh(): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/api/zenflow/Auth/refresh',
-      body: requestBody,
       mediaType: 'application/json',
     })
   }

@@ -9,9 +9,9 @@ export const useRefreshMutation = ({
   onError?: (error: any) => void
 }) => {
   return useMutation({
-    mutationFn: async (data: string) => {
+    mutationFn: async () => {
       try {
-        await AuthService.postApiZenflowAuthRefresh(data)
+        await AuthService.postApiZenflowAuthRefresh()
       } catch (error) {
         throw new Error(`Failed to refresh the user failed: ${error}`)
       }
