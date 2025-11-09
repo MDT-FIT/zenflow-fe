@@ -19,13 +19,13 @@ import { useListTransactionsQuery } from '@/features/bank/service/useListTransac
 const CURRENT_DATE = new Date()
 
 export const Dashboard = () => {
-  const { user } = useAuth()
+  const { user, isUserLoading } = useAuth()
   const navigate = useNavigate()
   const [currentAccount, selectedAccount] = useState(user?.accountIds[0] ?? '')
   const { getFilter, setFilters } = useSearchParamsFilters()
 
   useEffect(() => {
-    if (!user?.accountIds || user?.accountIds?.length === 0 || !currentAccount) {
+    if ((!user?.accountIds || user?.accountIds?.length === 0 || !currentAccount) && !isUserLoading) {
       navigate('/connect-bank')
     }
   }, [user])

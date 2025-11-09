@@ -8,13 +8,18 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useConnectBankMutation } from '@/features/bank/service/useConnectBankMutation'
 import { Exception } from '@/features/utils/Exception'
 import toast from 'react-hot-toast'
+import { queryClient } from '@/App'
+import { USER_KEY } from '@/features/auth/service/useGetCurrentUser'
 
 export const ConnectBank = () => {
   const { user } = useAuth()
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const connectBank = useConnectBankMutation({
-    onSuccess: () => navigate('/', { replace: true }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: [USER_KEY]})
+      navigate('/', { replace: true })
+    },
   })
   const clientId = searchParams.get('credentials_id') ?? ''
 

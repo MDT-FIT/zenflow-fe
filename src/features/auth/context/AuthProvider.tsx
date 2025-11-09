@@ -16,8 +16,9 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
   const navigate = useNavigate()
 
   const logoutMutation = useLogOutMutation({
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [USER_KEY] })
+    onSuccess: async () => {
+       await queryClient.setQueryData([USER_KEY], null)
+      await queryClient.invalidateQueries({ queryKey: [USER_KEY] })
       navigate('/log-in', { replace: true })
     },
   })
@@ -25,15 +26,15 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
   const refreshMutation = useRefreshMutation({})
 
   const loginMutation = useLogInMutation({
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [USER_KEY] })
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: [USER_KEY] })
       navigate('/', { replace: true })
     },
   })
 
   const signInMutation = useSignInMutation({
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [USER_KEY] })
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: [USER_KEY] })
       navigate('/', { replace: true })
     },
   })

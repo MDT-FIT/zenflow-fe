@@ -12,13 +12,10 @@ export const AuthGuard = () => {
       navigate('/log-in', { replace: true })
     }
 
-    if (user && window.location.pathname === '/log-in') {
+    if (user && user.id && ( window.location.pathname === '/log-in' || window.location.pathname === '/sign-in')) {
       navigate('/', { replace: true })
     }
 
-    if (user && window.location.pathname === '/sign-in') {
-      navigate('/', { replace: true })
-    }
   }, [user, isUserLoading, navigate])
 
   if (isUserLoading) {
