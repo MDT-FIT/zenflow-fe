@@ -1,3 +1,3 @@
-import type { BankConfigDto } from "../BankConfigDto";
+import type { BankConfigDto } from '../BankConfigDto'
 
-export type BankConfigsResponse = BankConfigDto[];
+export type BankConfigsResponse = BankConfigDto[]

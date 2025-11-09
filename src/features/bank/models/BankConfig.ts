@@ -1,5 +1,5 @@
 export interface BankConfig {
-  id: string,
+  id: string
   name: string
   apiLink: string
   logo: string

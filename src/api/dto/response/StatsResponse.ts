@@ -1,3 +1,3 @@
-import type { StatsDto } from "../StatsDto";
+import type { StatsDto } from '../StatsDto'
 
-export type StatsResponse = StatsDto;
+export type StatsResponse = StatsDto

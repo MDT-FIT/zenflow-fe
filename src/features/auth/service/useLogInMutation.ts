@@ -3,6 +3,7 @@ import { AuthService } from './AuthService'
 import type { LogInFormValues } from '../models/LogInFormValues'
 import type { LogInResponse } from '@/api/dto/response/LogInResponse'
 import type { User } from '../models/User'
+import { Exception } from '@/features/utils/Exception'
 
 export const useLogInMutation = ({
   onSuccess,
@@ -23,7 +24,7 @@ export const useLogInMutation = ({
             email: response.user.email,
             id: response.user.id,
             username: response.user.username,
-            accountIds: response.user.accountIds
+            accountIds: response.user.accountIds,
           } as User,
         }
 
@@ -33,7 +34,9 @@ export const useLogInMutation = ({
 
         return mappedResponse.user
       } catch (error) {
-        throw new Error(`Log in failed: ${error}`)
+        if (error instanceof Error) {
+          throw new Exception({ title: 'Log in failed', message: error.message, level: 'error' })
+        }
       }
     },
     onSuccess,

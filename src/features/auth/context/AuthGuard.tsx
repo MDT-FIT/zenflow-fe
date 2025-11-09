@@ -8,15 +8,25 @@ export const AuthGuard = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!isUserLoading && !user) {
+    if (!isUserLoading && !user && window.location.pathname !== '/sign-in') {
       navigate('/log-in', { replace: true })
+    }
+
+    if (user && window.location.pathname === '/log-in') {
+      navigate('/', { replace: true })
+    }
+
+    if (user && window.location.pathname === '/sign-in') {
+      navigate('/', { replace: true })
     }
   }, [user, isUserLoading, navigate])
 
   if (isUserLoading) {
-      return <div className="w-full h-full flex justify-center items-center">
+    return (
+      <div className="w-full h-full flex justify-center items-center">
         <Loader2 className="h-14 w-14 animate-spin text-primary" />
       </div>
+    )
   }
 
   return <Outlet />

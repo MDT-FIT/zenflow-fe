@@ -12,6 +12,7 @@ import type { BalancesResponse } from '@/api/dto/response/BalancesResponse'
 import type { BankConfigsResponse } from '@/api/dto/response/BankConfigsResponse'
 import type { StatsResponse } from '@/api/dto/response/StatsResponse'
 import type { TransactionsResponse } from '@/api/dto/response/TransactionsResponse'
+import type { ConnectBankRequest } from '@/api/dto/request/ConnectBankRequest'
 export class BankService {
   /**
    * @param userId
@@ -47,7 +48,9 @@ export class BankService {
    * @returns any OK
    * @throws ApiError
    */
-  public static postApiBankStatsExpenses(requestBody?: StatsFilterRequest): CancelablePromise<StatsResponse> {
+  public static postApiBankStatsExpenses(
+    requestBody?: StatsFilterRequest
+  ): CancelablePromise<StatsResponse> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/api/Bank/stats/expenses',
@@ -60,7 +63,9 @@ export class BankService {
    * @returns any OK
    * @throws ApiError
    */
-  public static postApiBankStatsIncome(requestBody?: StatsFilterRequest): CancelablePromise<StatsResponse> {
+  public static postApiBankStatsIncome(
+    requestBody?: StatsFilterRequest
+  ): CancelablePromise<StatsResponse> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/api/Bank/stats/income',
@@ -106,15 +111,26 @@ export class BankService {
    * @returns any OK
    * @throws ApiError
    */
-  public static postApiBankConnectOtherBank(code: string, userId?: string): CancelablePromise<any> {
+  public static postApiBankConnectOtherBank(userId?: string): CancelablePromise<void> {
     return __request(OpenAPI, {
       method: 'POST',
-      url: '/api/Bank/connect/other-bank/{code}',
-      path: {
-        code: code,
-      },
+      url: '/api/Bank/connect/other-bank',
       query: {
         userId: userId,
+      },
+    })
+  }
+  /**
+   * @param userId
+   * @returns any OK
+   * @throws ApiError
+   */
+  public static getApiOtherBankLink(userId?: string): CancelablePromise<{ link: string }> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/api/Bank/connect/other-bank/get-link',
+      query: {
+        userId,
       },
     })
   }

@@ -1,5 +1,5 @@
 export enum TransactionType {
-  Default = 'default',
+  Default = 'Default',
   Income = 'Income',
   Expense = 'Expense',
   Transfer = 'Transfer',
@@ -11,8 +11,8 @@ export enum TransactionResult {
 }
 
 export interface Transaction {
-  accountId: string,
-  userId: string,
+  accountId: string
+  userId: string
   amount: number
   scale: number
   currency: string

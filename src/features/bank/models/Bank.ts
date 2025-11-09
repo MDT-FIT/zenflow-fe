@@ -1,4 +1,4 @@
 export enum Bank {
-    Tink = 'Tink',
-    Monobank = 'Monobank',
+  Tink = 'Tink',
+  Monobank = 'Monobank',
 }

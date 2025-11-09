@@ -1,6 +1,6 @@
-import { TransactionResult } from "../models/Transaction";
+import { TransactionResult } from '../models/Transaction'
 
 export const TransactionResultMapper: Record<string, TransactionResult> = {
-    'SUCCESS': TransactionResult.Success,
-    'PENDING': TransactionResult.Pending,
+  SUCCESS: TransactionResult.Success,
+  PENDING: TransactionResult.Pending,
 }

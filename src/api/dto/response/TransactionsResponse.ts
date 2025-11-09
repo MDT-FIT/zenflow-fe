@@ -1,3 +1,3 @@
-import type { TransactionDto } from "../TransactionDto";
+import type { TransactionDto } from '../TransactionDto'
 
-export type TransactionsResponse = TransactionDto[];
+export type TransactionsResponse = TransactionDto[]

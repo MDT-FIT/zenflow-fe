@@ -10,7 +10,7 @@ import { request as __request } from '../../../api/core/request'
 import type { GetUserResponse } from '@/api/dto/response/GetUserResponse'
 
 export class AuthService {
-    /**
+  /**
    * @param requestBody
    * @returns any OK
    * @throws ApiError

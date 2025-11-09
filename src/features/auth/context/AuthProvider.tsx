@@ -5,6 +5,7 @@ import { AuthContext } from './AuthContext'
 import { useGetCurrentUser, USER_KEY } from '../service/useGetCurrentUser'
 import { queryClient } from '@/App'
 import { useNavigate } from 'react-router-dom'
+import { useSignInMutation } from '../service/useSignInMutation'
 
 export interface AuthContextProviderProps {
   children: React.ReactNode
@@ -16,7 +17,8 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
 
   const logoutMutation = useLogOutMutation({
     onSuccess: () => {
-      queryClient.removeQueries({ queryKey: [USER_KEY] })
+      queryClient.invalidateQueries({ queryKey: [USER_KEY] })
+      navigate('/log-in', { replace: true })
     },
   })
 
@@ -29,11 +31,20 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
     },
   })
 
+  const signInMutation = useSignInMutation({
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [USER_KEY] })
+      navigate('/', { replace: true })
+    },
+  })
+
   const value = {
     user: user ?? null,
+    signup: signInMutation.mutateAsync,
     login: loginMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,
     isUserLoading,
+    isSignUp: signInMutation.isPending,
     isLoginIn: loginMutation.isPending,
     isLogingOut: logoutMutation.isPending,
     refresh: refreshMutation.mutateAsync,

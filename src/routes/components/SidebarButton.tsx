@@ -9,7 +9,7 @@ export const SidebarButtonMapper: Record<string, ComponentType<SVGProps<SVGSVGEl
   '/': DashboardIcon,
   '/cards': CardsIcons,
   '/transactions': TransactionIcon,
-  '/logout': LogoutIcon,
+  '/log-out': LogoutIcon,
 }
 
 export const SidebarButton = ({ link }: { link: string }) => {
@@ -19,14 +19,14 @@ export const SidebarButton = ({ link }: { link: string }) => {
     <NavLink
       to={link}
       className={({ isActive }) =>
-        `w-12 h-12 flex items-center justify-center rounded-lg transition ${
+        `w-11 h-11 flex items-center justify-center rounded-lg transition ${
           isActive
             ? 'bg-[#A0BA84]/20 text-[#A0BA84]'
             : 'bg-white/5 text-[#5A6262] hover:bg-white/10 hover:text-[#9B9E9E]'
         }`
       }
     >
-      {Icon ? <Icon /> : null}
+      {Icon ? <Icon className="w-6 h-6" /> : null}
     </NavLink>
   )
 }

@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { AuthService } from './AuthService'
+import { Exception } from '@/features/utils/Exception'
 
 export const useRefreshMutation = ({
   onSuccess,
@@ -13,7 +14,13 @@ export const useRefreshMutation = ({
       try {
         await AuthService.postApiZenflowAuthRefresh()
       } catch (error) {
-        throw new Error(`Failed to refresh the user failed: ${error}`)
+        if (error instanceof Error) {
+          throw new Exception({
+            title: 'Failed to refresh the user failed:',
+            message: error.message,
+            level: 'error',
+          })
+        }
       }
     },
     onSuccess,

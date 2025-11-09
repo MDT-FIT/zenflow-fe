@@ -1,28 +1,22 @@
+import { useAuth } from '@/features/auth/context/useAuth'
 import { Button } from '../../components/ui/button'
+import { AuthLayout } from '../components/AuthLayout'
 import { SignInForm } from './components/SignInForm'
+import { Link } from 'react-router-dom'
 
 const FORM_ID = 'sign-in-form'
 export const SignIn = () => {
+  const { signup, isSignUp } = useAuth()
+
   return (
-    <div className="w-full h-full ">
-      <div className="w-full h-full flex">
-        <div className="w-1/2 h-full flex flex-col items-center justify-center gap-6">
-          <div className="w-[360px] flex flex-col gap-6 justify-center p-3">
-            <h2>Sign in</h2>
-            <SignInForm id={FORM_ID} />
-            <Button variant="default" size="lg" type="submit" form={FORM_ID}>
-              Sign in
-            </Button>
-          </div>
-        </div>
-        <div className="w-1/2 h-full">
-          <img
-            className="w-full h-full object-cover"
-            src="/images/screen.png"
-            alt="Sign In Illustration"
-          />
-        </div>
-      </div>
-    </div>
+    <AuthLayout title="Sign in">
+      <SignInForm id={FORM_ID} onSubmit={signup} />
+      <Button variant="default" size="lg" type="submit" form={FORM_ID} disabled={isSignUp}>
+        Sign in
+      </Button>
+      <Link to="/log-in">
+        Already have an account? <span className="text-primary font-medium">Log in</span>
+      </Link>
+    </AuthLayout>
   )
 }
