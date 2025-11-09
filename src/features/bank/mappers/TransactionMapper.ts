@@ -1,6 +1,3 @@
-import type { BankConfigDto } from '@/api/dto/BankConfigDto'
-import type { BankConfig } from '../models/BankConfig'
-import { BankMapper } from './BankMapper'
 import type { TransactionDto } from '@/api/dto/TransactionDto'
 import type { Transaction } from '../models/Transaction'
 import { TransactionResultMapper } from './TransactionResultMapper'

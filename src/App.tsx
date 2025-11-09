@@ -13,7 +13,7 @@ import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
 import { Exception } from './features/utils/Exception'
 import { AuthGuard } from './features/auth/context/AuthGuard'
-import { Logout } from './routes/auth/LogOut'
+import { Logout } from './routes/auth/Logout'
 
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({

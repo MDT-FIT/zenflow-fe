@@ -12,7 +12,6 @@ import type { BalancesResponse } from '@/api/dto/response/BalancesResponse'
 import type { BankConfigsResponse } from '@/api/dto/response/BankConfigsResponse'
 import type { StatsResponse } from '@/api/dto/response/StatsResponse'
 import type { TransactionsResponse } from '@/api/dto/response/TransactionsResponse'
-import type { ConnectBankRequest } from '@/api/dto/request/ConnectBankRequest'
 export class BankService {
   /**
    * @param userId

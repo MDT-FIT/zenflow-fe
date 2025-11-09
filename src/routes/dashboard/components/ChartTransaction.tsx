@@ -1,5 +1,5 @@
 import type { Transaction } from '@/features/bank/models/Transaction'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts'
 
 interface AggregatedTransactionData {
   date: string
